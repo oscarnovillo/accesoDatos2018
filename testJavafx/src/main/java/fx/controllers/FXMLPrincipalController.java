@@ -25,27 +25,31 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private BorderPane fxRoot;
-    
-    
+
+    private AnchorPane pantallaWelcome;
+    private FXMLPantallaBienvenidaController controllerWelcome;
+
     @FXML
-    public void cargarPantalla() {
+    public void cargarPantallaWelcome() {
+        fxRoot.setCenter(pantallaWelcome);
+
+    }
+
+    private void preCargaWelcome() {
         try {
             FXMLLoader loaderMenu = new FXMLLoader(
                     getClass().getResource(
                             "/fxml/FXMLPantallaBienvenida.fxml"));
-            AnchorPane pantalla = loaderMenu.load();
-            FXMLPantallaBienvenidaController c = 
-                    loaderMenu.getController();
-            
-            c.setLogin("Oscar");
-            
-            fxRoot.setCenter(pantalla);
-            
+            pantallaWelcome = loaderMenu.load();
+            controllerWelcome
+                    = loaderMenu.getController();
+
+            controllerWelcome.setLogin("Oscar");
+
         } catch (IOException ex) {
-            
+
             Logger.getLogger(FXMLPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 
     /**
@@ -54,6 +58,7 @@ public class FXMLPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        preCargaWelcome();
     }
 
 }
