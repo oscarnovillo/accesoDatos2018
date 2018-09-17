@@ -15,7 +15,7 @@
          <menus>
             <Menu mnemonicParsing="false" text="miprimermenu">
               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#cargarPantalla" text="Unspecified Action" />
+                  <MenuItem mnemonicParsing="false" onAction="#cargarPantallaWelcome" text="Unspecified Action" />
               </items>
             </Menu>
          </menus>

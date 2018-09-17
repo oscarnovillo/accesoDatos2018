@@ -26,8 +26,21 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private BorderPane fxRoot;
 
+    private String usuario;
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    
+    
     private AnchorPane pantallaWelcome;
     private FXMLPantallaBienvenidaController controllerWelcome;
+    private AnchorPane pantallaLogin;
+    private FXMLLoginController controllerLogin;
 
     @FXML
     public void cargarPantallaWelcome() {
@@ -35,6 +48,11 @@ public class FXMLPrincipalController implements Initializable {
 
     }
 
+    @FXML
+    public void cargarPantallaLogin() {
+        fxRoot.setCenter(pantallaLogin);
+
+    }
     private void preCargaWelcome() {
         try {
             FXMLLoader loaderMenu = new FXMLLoader(
@@ -44,7 +62,7 @@ public class FXMLPrincipalController implements Initializable {
             controllerWelcome
                     = loaderMenu.getController();
 
-            controllerWelcome.setLogin("Oscar");
+            controllerWelcome.setLogin(this.getUsuario());
 
         } catch (IOException ex) {
 
@@ -52,6 +70,23 @@ public class FXMLPrincipalController implements Initializable {
         }
     }
 
+    
+    private void preCargaLogin() {
+        try {
+            FXMLLoader loaderMenu = new FXMLLoader(
+                    getClass().getResource(
+                            "/fxml/FXMLLogin.fxml"));
+            pantallaLogin = loaderMenu.load();
+            controllerLogin
+                    = loaderMenu.getController();
+
+            controllerLogin.setPrincipal(this);
+
+        } catch (IOException ex) {
+
+            Logger.getLogger(FXMLPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * Initializes the controller class.
      */
@@ -59,6 +94,8 @@ public class FXMLPrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         preCargaWelcome();
+        preCargaLogin();
+        cargarPantallaLogin();
     }
 
 }
