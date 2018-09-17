@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -26,6 +27,9 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private BorderPane fxRoot;
 
+    @FXML
+    private MenuBar fxMenu;
+    
     private String usuario;
 
     public String getUsuario() {
@@ -44,6 +48,8 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     public void cargarPantallaWelcome() {
+        fxMenu.setVisible(true);
+        controllerWelcome.setLogin(this.getUsuario());
         fxRoot.setCenter(pantallaWelcome);
 
     }
@@ -62,7 +68,7 @@ public class FXMLPrincipalController implements Initializable {
             controllerWelcome
                     = loaderMenu.getController();
 
-            controllerWelcome.setLogin(this.getUsuario());
+            
 
         } catch (IOException ex) {
 
@@ -95,6 +101,7 @@ public class FXMLPrincipalController implements Initializable {
         // TODO
         preCargaWelcome();
         preCargaLogin();
+        fxMenu.setVisible(false);
         cargarPantallaLogin();
     }
 

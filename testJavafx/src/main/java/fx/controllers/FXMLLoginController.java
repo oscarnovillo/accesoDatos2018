@@ -30,7 +30,7 @@ public class FXMLLoginController implements Initializable {
     }
     
     
-    
+    @FXML
     public void clickLogin()
     {
         principal.setUsuario(fxUsuario.getText());

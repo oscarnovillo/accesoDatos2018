@@ -11,7 +11,7 @@
         <URL value="@/styles/fxmlprincipal.css" />
     </stylesheets>
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar fx:id="fxMenu" BorderPane.alignment="CENTER">
          <menus>
             <Menu mnemonicParsing="false" text="miprimermenu">
               <items>
