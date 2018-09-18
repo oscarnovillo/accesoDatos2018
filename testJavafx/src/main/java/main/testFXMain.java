@@ -29,9 +29,7 @@ public class testFXMain extends Application {
         FXMLLoader loaderMenu = new FXMLLoader(
                 getClass().getResource("/fxml/FXMLPrincipal.fxml"));
         BorderPane root = loaderMenu.load();
-        
-
-
+ 
         Scene scene = new Scene(root);
 //        scene.getStylesheets().add("css/fxmlScene.css");
         primaryStage.setTitle("IES Quevedo");

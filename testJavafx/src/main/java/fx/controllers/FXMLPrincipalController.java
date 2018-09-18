@@ -67,9 +67,6 @@ public class FXMLPrincipalController implements Initializable {
             pantallaWelcome = loaderMenu.load();
             controllerWelcome
                     = loaderMenu.getController();
-
-            
-
         } catch (IOException ex) {
 
             Logger.getLogger(FXMLPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
