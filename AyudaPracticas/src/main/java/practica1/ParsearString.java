@@ -14,7 +14,7 @@ public class ParsearString {
     public static void main(String[] args) {
 
         String linea = "29384792836498;5;2018-12-12";
-
+     
         String[] partes = linea.split(";");
         System.out.println(partes[2]);
         System.out.println(
