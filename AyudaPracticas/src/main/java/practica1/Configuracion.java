@@ -18,13 +18,13 @@ public class Configuracion {
 
     System.out.println(
             ConfigurationProperties.getInstance()
-                    .getProperties().getProperty("file"));
+                    .getProperty("file"));
     System.out.println(
             ConfigurationProperties.getInstance()
-                    .getProperties().getProperty("nuevo"));
+                    .getProperty("nuevo"));
     System.out.println(
             ConfigurationProperties.getInstance()
-                    .getProperties().getProperty("nf"));
+                    .getProperty("nf"));
     
     
     System.out.println(

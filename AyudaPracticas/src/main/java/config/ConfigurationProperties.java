@@ -23,8 +23,8 @@ public class ConfigurationProperties {
 
   private Properties properties;
 
-  public Properties getProperties() {
-    return properties;
+  public String getProperty(String key) {
+    return properties.getProperty(key);
   }
 
   private ConfigurationProperties() {
