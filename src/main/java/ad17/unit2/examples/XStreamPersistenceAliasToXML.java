@@ -5,6 +5,7 @@ import java.io.File;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.thoughtworks.xstream.persistence.FilePersistenceStrategy;
+import com.thoughtworks.xstream.persistence.PersistenceStrategy;
 import com.thoughtworks.xstream.persistence.XmlArrayList;
 
 public class XStreamPersistenceAliasToXML {
@@ -28,8 +29,9 @@ public class XStreamPersistenceAliasToXML {
 		
 		//Omit collection root
 		 xstream1.addImplicitCollection(Person.class, "telephones");
-
-		XmlArrayList pList = new XmlArrayList(new FilePersistenceStrategy(new File("./xml"), xstream1));
+		 
+		 FilePersistenceStrategy strategy = new FilePersistenceStrategy(new File("./xml"), xstream1);
+		XmlArrayList pList = new XmlArrayList(strategy);
 		
 		//Adds Person objects
 		pList.add(new Person("Pepe", "Gomez"));

@@ -22,7 +22,7 @@ public class XStreamAliasExample {
 
 		//Creating Person object
 		Person person=new Person("Pepe", "Gomez");
-		
+		xstream1.useAttributeFor(Person.class,"id");
 		//Sets the class alias
 		xstream1.alias("person", Person.class);
 		xstream1.alias("telephone", Telephone.class);
@@ -31,7 +31,7 @@ public class XStreamAliasExample {
 		xstream1.aliasField("firstName", Person.class, "name");
 		
 		//Omit collection root
-		 xstream1.addImplicitCollection(Person.class, "telephones");
+		xstream1.addImplicitCollection(Person.class, "telephones");
 
 		//Transforms person object to XML, using method toXML
 		String xml=xstream1.toXML(person);

@@ -1,0 +1,44 @@
+<object-stream>
+  <ad17.unit2.examples.Person>
+    <name>Joe</name>
+    <lastName>Walnes</lastName>
+    <address>
+      <street>Second street</street>
+      <number>5</number>
+    </address>
+    <telephones>
+      <ad17.unit2.examples.Telephone>
+        <code>34</code>
+        <number>666666666</number>
+      </ad17.unit2.examples.Telephone>
+      <ad17.unit2.examples.Telephone>
+        <code>34</code>
+        <number>1234567898</number>
+      </ad17.unit2.examples.Telephone>
+    </telephones>
+    <dateOfBirth>1994-06-30</dateOfBirth>
+    <over18>true</over18>
+  </ad17.unit2.examples.Person>
+  <ad17.unit2.examples.Person>
+    <name>Someone</name>
+    <lastName>Else</lastName>
+    <address>
+      <street>Second street</street>
+      <number>5</number>
+    </address>
+    <telephones>
+      <ad17.unit2.examples.Telephone>
+        <code>34</code>
+        <number>666666666</number>
+      </ad17.unit2.examples.Telephone>
+      <ad17.unit2.examples.Telephone>
+        <code>34</code>
+        <number>1234567898</number>
+      </ad17.unit2.examples.Telephone>
+    </telephones>
+    <dateOfBirth>1994-06-30</dateOfBirth>
+    <over18>true</over18>
+  </ad17.unit2.examples.Person>
+  <string>hello</string>
+  <int>12345</int>
+</object-stream>
