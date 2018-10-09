@@ -1,13 +1,17 @@
 package ad17.unit2.activities;
 
 import java.util.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 public class Course {
     private List<Student> students;
     private int nrStudents; //Number of students in the course
+    private int maxStudents;
 
     public Course(int size){
-        students=new ArrayList<Student>(size);
+        students=new ArrayList<Student>();
+        maxStudents = size;
         nrStudents=0;
         
     }
@@ -24,7 +28,7 @@ public class Course {
      * @return true if full
      */
     public boolean fullCourse(){
-        return nrStudents==students.size();
+        return nrStudents==maxStudents;
     }
     /**
      * Adds a new student to the course (if not full)
