@@ -7,6 +7,9 @@ public class Student {
 	int yearOfBirth;
 	Address address;
 
+  public Student() {
+  }
+
 public Student(String firstName, String lastName, int yearOfBirth,
 			String street, int number) {
 		this.firstName = firstName;

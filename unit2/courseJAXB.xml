@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<course>
+    <students>
+        <firstName>John</firstName>
+        <lastName>Gutag</lastName>
+        <yearOfBirth>1985</yearOfBirth>
+    </students>
+    <students>
+        <firstName>Jack</firstName>
+        <lastName>Johnson</lastName>
+        <yearOfBirth>1989</yearOfBirth>
+    </students>
+    <students>
+        <firstName>John</firstName>
+        <lastName>Jackson</lastName>
+        <yearOfBirth>1981</yearOfBirth>
+    </students>
+</course>
