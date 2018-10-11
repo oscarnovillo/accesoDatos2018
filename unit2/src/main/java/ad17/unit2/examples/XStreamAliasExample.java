@@ -6,6 +6,8 @@ import java.util.Date;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+import java.util.LinkedList;
+import java.util.List;
 
 public class XStreamAliasExample {
 
@@ -20,25 +22,33 @@ public class XStreamAliasExample {
     xstream1.allowTypesByWildcard(new String[]{"ad17.unit2.examples.*"});
 
     //Creating Person object
+    List<Person> personas = new LinkedList<>();
     Person person = new Person("Pepe", "Gomez");
-
+    personas.add(person);
+    person = new Person("Pepe23", "Gomez");
+    personas.add(person);
     //Sets the class alias
     xstream1.alias("person", Person.class);
+    xstream1.alias("personas", LinkedList.class);
     xstream1.alias("telephone", Telephone.class);
 
     //Defines the attribute alias
     xstream1.aliasField("firstName", Person.class, "name");
+    xstream1.aliasField("telefonès", Person.class, "telephones");
 
     //Omit collection root
     xstream1.addImplicitCollection(Person.class, "telephones");
-
+    xstream1.useAttributeFor(Person.class,"name");
+    xstream1.registerConverter(new AddressConverter());
+    
+    
     //Transforms person object to XML, using method toXML
-    String xml = xstream1.toXML(person);
+    String xml = xstream1.toXML(personas);
 
     System.out.println(xml);
 
     //Rebuilds an object from the XML generated, using method fromXML
-    Person person2 = (Person) xstream1.fromXML(xml);
+    List<Person> person2 = (List) xstream1.fromXML(xml);
 
     System.out.println(person2.toString());
   }
