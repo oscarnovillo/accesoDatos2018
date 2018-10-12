@@ -1,14 +1,21 @@
 package ad17.unit2.activities;
 
 import java.util.*;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
+@XmlRootElement
 public class Course {
+  
+  @XmlElement
     private List<Student> students;
     private int nrStudents; //Number of students in the course
     private int maxStudents;
 
+  public Course() {
+  }
+
+ 
     public Course(int size){
         students=new ArrayList<Student>();
         maxStudents = size;
