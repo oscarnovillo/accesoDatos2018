@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.converters.basic.DateConverter;
+import com.thoughtworks.xstream.converters.time.LocalDateConverter;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class XStreamAliasExample {
@@ -32,6 +34,7 @@ public class XStreamAliasExample {
 		
 		//Omit collection root
 		 xstream1.addImplicitCollection(Person.class, "telephones");
+              
 
 		//Transforms person object to XML, using method toXML
 		String xml=xstream1.toXML(person);
