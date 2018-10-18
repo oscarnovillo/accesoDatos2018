@@ -6,8 +6,18 @@ import java.util.Date;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class XStreamAliasExample {
 
@@ -38,17 +48,39 @@ public class XStreamAliasExample {
 
     //Omit collection root
     xstream1.addImplicitCollection(Person.class, "telephones");
-    xstream1.useAttributeFor(Person.class,"name");
+    xstream1.useAttributeFor(Person.class, "name");
     xstream1.registerConverter(new AddressConverter());
-    
-    
+
     //Transforms person object to XML, using method toXML
-    String xml = xstream1.toXML(personas);
+    String xml = "";
+    try {
+      xml = xstream1.toXML(personas);
+      xstream1.toXML(personas, new FileOutputStream("xml/personas.xml"));
+    } catch (FileNotFoundException ex) {
+      Logger.getLogger(XStreamAliasExample.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
     System.out.println(xml);
 
+//    Path file = Paths.get("xml/personas.xml");
+//    try {
+//      Files.write(file,xml.getBytes());
+//    } catch (IOException ex) {
+//      Logger.getLogger(XStreamAliasExample.class.getName()).log(Level.SEVERE, null, ex);
+//    }
+//    String xmlFile = null;
+//    try {
+//      xmlFile = new String(Files.readAllBytes(file));
+//    } catch (IOException ex) {
+//      Logger.getLogger(XStreamAliasExample.class.getName()).log(Level.SEVERE, null, ex);
+//    }
     //Rebuilds an object from the XML generated, using method fromXML
-    List<Person> person2 = (List) xstream1.fromXML(xml);
+    List<Person> person2 = null;
+    try {
+      person2 = (List) xstream1.fromXML(new FileInputStream("xml/personas.xml"));
+    } catch (FileNotFoundException ex) {
+      Logger.getLogger(XStreamAliasExample.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
     System.out.println(person2.toString());
   }

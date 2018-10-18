@@ -1,0 +1,30 @@
+<personas>
+  <person firstName="Pepe">
+    <lastName>Gomez</lastName>
+    <address>Second street::5</address>
+    <telephone>
+      <code>34</code>
+      <number>666666666</number>
+    </telephone>
+    <telephone>
+      <code>34</code>
+      <number>1234567898</number>
+    </telephone>
+    <dateOfBirth>1994-06-30</dateOfBirth>
+    <over18>true</over18>
+  </person>
+  <person firstName="Pepe23">
+    <lastName>Gomez</lastName>
+    <address>Second street::5</address>
+    <telephone>
+      <code>34</code>
+      <number>666666666</number>
+    </telephone>
+    <telephone>
+      <code>34</code>
+      <number>1234567898</number>
+    </telephone>
+    <dateOfBirth>1994-06-30</dateOfBirth>
+    <over18>true</over18>
+  </person>
+</personas>
