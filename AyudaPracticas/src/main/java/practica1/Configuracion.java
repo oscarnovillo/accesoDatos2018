@@ -5,6 +5,7 @@
  */
 package practica1;
 
+import config.ConfigPropertiesXML;
 import config.ConfigurationProperties;
 import config.ConfigurationYaml;
 
@@ -23,10 +24,12 @@ public class Configuracion {
             ConfigurationProperties.getInstance()
                     .getProperty("nuevo"));
     System.out.println(
-            ConfigurationProperties.getInstance()
-                    .getProperty("nf"));
-    
-    
+            ConfigPropertiesXML.getInstance()
+                    .getProperty("file"));
+    System.out.println(
+            ConfigPropertiesXML.getInstance()
+                    .getProperty("nuevo"));
+
     System.out.println(
             ConfigurationYaml.getInstance().getUser());
   }
