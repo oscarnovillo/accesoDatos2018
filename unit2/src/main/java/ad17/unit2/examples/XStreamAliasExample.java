@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.converters.basic.DateConverter;
+import com.thoughtworks.xstream.converters.time.LocalDateConverter;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.io.File;
 import java.io.FileInputStream;
