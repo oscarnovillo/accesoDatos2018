@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLModificarNotasController">
+   <children>
+      <Label layoutX="378.0" layoutY="65.0" text="Asignatura" />
+      <TextField fx:id="fxNota" layoutX="380.0" layoutY="216.0" />
+      <Label layoutX="44.0" layoutY="38.0" text="Alumnos">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ListView fx:id="fxList" layoutX="44.0" layoutY="65.0" onMouseClicked="#handleMouseClick" prefHeight="404.0" prefWidth="300.0" />
+      <Button layoutX="424.0" layoutY="255.0" mnemonicParsing="false" onAction="#update" text="Update">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="378.0" layoutY="186.0" text="Nota" />
+      <ComboBox fx:id="fxComboAsig" layoutX="380.0" layoutY="90.0" prefHeight="26.0" prefWidth="205.0" promptText="Elige la asignatura..." />
+      <Button layoutX="597.0" layoutY="90.0" mnemonicParsing="false" onAction="#cargar" text="Cargar" />
+   </children>
+</AnchorPane>

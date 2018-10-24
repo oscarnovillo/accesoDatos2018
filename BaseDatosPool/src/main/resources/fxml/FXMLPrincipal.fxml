@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="fxRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLPrincipalController">
+   <top>
+      <MenuBar fx:id="fxMenu" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Alumnos">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleSceneAlumnos" text="CRUD" />
+               </items></Menu>
+          <Menu mnemonicParsing="false" text="Asignaturas">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleSceneAsignaturas" text="CRUD" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" text="Notas">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleSceneNotas" text="CRUD" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSceneModNotas" text="Modificar" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
