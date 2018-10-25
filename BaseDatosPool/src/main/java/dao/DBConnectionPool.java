@@ -5,8 +5,7 @@
  */
 package dao;
 
-import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import config.Configuration;
@@ -83,10 +82,10 @@ public class DBConnectionPool {
     public DataSource getDataSource() {
         // Creates a new instance of DriverManagerDataSource and sets
         // the required parameters such as the Jdbc Driver class,
-        MysqlDataSource mysql = new MysqlConnectionPoolDataSource();
-        mysql.setUrl(Configuration.getInstance().getUrlDB());
-        mysql.setUser(Configuration.getInstance().getUserDB());
-        mysql.setPassword(Configuration.getInstance().getPassDB());
+//        MysqlDataSource mysql = new MysqlConnectionPoolDataSource();
+//        mysql.setUrl(Configuration.getInstance().getUrlDB());
+//        mysql.setUser(Configuration.getInstance().getUserDB());
+//        mysql.setPassword(Configuration.getInstance().getPassDB());
 
         // Jdbc URL, database user name and password.
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
