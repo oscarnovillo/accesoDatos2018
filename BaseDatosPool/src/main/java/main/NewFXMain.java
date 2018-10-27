@@ -23,8 +23,8 @@ public class NewFXMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        TablasDao tablas = new TablasDao();
-        tablas.crearModeloJDBC();
+        //TablasDao tablas = new TablasDao();
+        //tablas.crearModeloJDBC();
 //        Parent root = FXMLLoader.load(getClass().getResource(Constantes.PANTALLA_PRINCIPAL));
         FXMLLoader loaderMenu = new FXMLLoader(getClass().getResource(Constantes.PANTALLA_PRINCIPAL));
         BorderPane root = loaderMenu.load();
