@@ -75,7 +75,7 @@ public class AlumnosDao {
             con.setAutoCommit(false);
             QueryRunner qr = new QueryRunner();
 
-            Integer id = qr.insert(con,
+            Number id = qr.insert(con,
                     "INSERT INTO alumnos (NOMBRE, FECHA_NACIMIENTO, MAYOR_EDAD) VALUES(?,?,?)",
                     new ScalarHandler<>(),
                     alumno.getNombre(), alumno.getFecha_nacimiento(), alumno.getMayor_edad());
