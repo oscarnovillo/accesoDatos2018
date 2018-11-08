@@ -79,52 +79,52 @@ public class MainChorraPruebaBD {
 //      db.cerrarStatement(stmt);
 //      db.cerrarConexion(con);
 //    }
-    try {
-      con = DriverManager
-              .getConnection("jdbc:mysql://db4free.net:3306/daw2_pruebas", "oscarnovillo", "1235b1a9");
-
-      //comienza transaccion
-      con.setAutoCommit(false);
-
-      int idActor = 1;
-      String selectSql
-              = "delete from actuar "
-              + "where id_Empleado = ?";
-
-      stmt = con.prepareStatement(selectSql);
-
-      stmt.setInt(1, 1);
-
-      int numeroFilas = stmt.executeUpdate();
-      System.out.println(" filas actualizadas " + numeroFilas);
-
-      selectSql
-              = "delete from actor "
-              + "where fk_actor = ?";
-      stmt = con.prepareStatement(selectSql);
-      stmt.setInt(1, 1);
-
-      numeroFilas = stmt.executeUpdate();
-
-      System.out.println(" filas actualizadas " + numeroFilas);
-
-      con.commit();
-
-    } catch (SQLIntegrityConstraintViolationException ex) {
-      System.out.println("FK CONTRASNTNINT");
-    } catch (SQLException ex) {
-      try {
-        if (con != null) {
-          con.rollback();
-        }
-      } catch (SQLException ex1) {
-        Logger.getLogger(MainChorraPruebaBD.class.getName()).log(Level.SEVERE, null, ex1);
-      }
-      Logger.getLogger(MainChorraPruebaBD.class.getName()).log(Level.SEVERE, null, ex);
-    } finally {
-      db.cerrarStatement(stmt);
-      db.cerrarConexion(con);
-    }
+//    try {
+//      con = DriverManager
+//              .getConnection("jdbc:mysql://db4free.net:3306/daw2_pruebas", "oscarnovillo", "1235b1a9");
+//
+//      //comienza transaccion
+//      con.setAutoCommit(false);
+//
+//      int idActor = 1;
+//      String selectSql
+//              = "delete from actuar "
+//              + "where id_Empleado = ?";
+//
+//      stmt = con.prepareStatement(selectSql);
+//
+//      stmt.setInt(1, 1);
+//
+//      int numeroFilas = stmt.executeUpdate();
+//      System.out.println(" filas actualizadas " + numeroFilas);
+//
+//      selectSql
+//              = "delete from actor "
+//              + "where fk_actor = ?";
+//      stmt = con.prepareStatement(selectSql);
+//      stmt.setInt(1, 1);
+//
+//      numeroFilas = stmt.executeUpdate();
+//
+//      System.out.println(" filas actualizadas " + numeroFilas);
+//
+//      con.commit();
+//
+//    } catch (SQLIntegrityConstraintViolationException ex) {
+//      System.out.println("FK CONTRASNTNINT");
+//    } catch (SQLException ex) {
+//      try {
+//        if (con != null) {
+//          con.rollback();
+//        }
+//      } catch (SQLException ex1) {
+//        Logger.getLogger(MainChorraPruebaBD.class.getName()).log(Level.SEVERE, null, ex1);
+//      }
+//      Logger.getLogger(MainChorraPruebaBD.class.getName()).log(Level.SEVERE, null, ex);
+//    } finally {
+//      db.cerrarStatement(stmt);
+//      db.cerrarConexion(con);
+//    }
 
     try {
       con = DriverManager
@@ -136,7 +136,7 @@ public class MainChorraPruebaBD {
 
       stmt = con.prepareStatement(selectSql,Statement.RETURN_GENERATED_KEYS);
 
-      stmt.setString(1, "juan");
+      stmt.setString(1, "juan nuevo");
       stmt.setString(2, "guti");
       stmt.setInt(3, 21);
 
