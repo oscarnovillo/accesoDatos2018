@@ -79,28 +79,7 @@ public class NotasDao {
         return lista;
 
     }
-    //Select DBUtils
-
-    public List<Asignatura> getAllNotasDBUtils() {
-        List<Asignatura> lista = null;
-        DBConnection db = new DBConnection();
-        Connection con = null;
-        try {
-            con = db.getConnection();
-
-            QueryRunner qr = new QueryRunner();
-            ResultSetHandler<List<Asignatura>> handler
-                    = new BeanListHandler<Asignatura>(Asignatura.class);
-            lista = qr.query(con, "select * FROM notas", handler);
-
-        } catch (Exception ex) {
-            Logger.getLogger(AsignaturasDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-
-            db.cerrarConexion(con);
-        }
-        return lista;
-    }
+    
 
     //select where
     public Nota getNotaJDBC(int idAl, int idAsig) {
@@ -199,9 +178,9 @@ public class NotasDao {
             con.setAutoCommit(false);
             QueryRunner qr = new QueryRunner();
 
-            BigInteger id = qr.insert(con,
+            Number id = qr.insert(con,
                     "INSERT INTO notas (ID_ALUMNOS,ID_ASIGNATURAS) VALUES(?,?);",
-                    new ScalarHandler<BigInteger>(),
+                    new ScalarHandler<>(),
                     "", "");
 
             nota.setNota((int) id.longValue());

@@ -73,6 +73,13 @@
     <artifactId>mongodb-driver</artifactId>
     <version>3.8.1</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+<dependency>
+    <groupId>com.microsoft.sqlserver</groupId>
+    <artifactId>mssql-jdbc</artifactId>
+    <version>7.0.0.jre8</version>
+    
+</dependency>
 
     </dependencies>
     <name>BaseDatosPool</name>

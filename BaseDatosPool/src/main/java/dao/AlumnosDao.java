@@ -32,7 +32,7 @@ public class AlumnosDao {
 
             QueryRunner qr = new QueryRunner();
             ResultSetHandler<List<Alumno>> handler
-                    = new BeanListHandler<Alumno>(Alumno.class);
+                    = new BeanListHandler<>(Alumno.class);
             lista = qr.query(con, "select * FROM alumnos", handler);
 
         } catch (Exception ex) {
@@ -53,7 +53,7 @@ public class AlumnosDao {
 
             QueryRunner qr = new QueryRunner();
             ResultSetHandler<List<Alumno>> handler
-                    = new BeanListHandler<Alumno>(Alumno.class);
+                    = new BeanListHandler<>(Alumno.class);
             lista = qr.query(con, "SELECT * FROM alumnos a join notas n on n.ID_ALUMNOS=a.id where n.ID_ASIGNATURAS=?", handler, id);
 
         } catch (Exception ex) {
@@ -75,7 +75,7 @@ public class AlumnosDao {
             con.setAutoCommit(false);
             QueryRunner qr = new QueryRunner();
 
-            Integer id = qr.insert(con,
+            Number id = qr.insert(con,
                     "INSERT INTO alumnos (NOMBRE, FECHA_NACIMIENTO, MAYOR_EDAD) VALUES(?,?,?)",
                     new ScalarHandler<>(),
                     alumno.getNombre(), alumno.getFecha_nacimiento(), alumno.getMayor_edad());
