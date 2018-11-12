@@ -28,10 +28,11 @@ public class DBConnection {
         Class.forName(Configuration.getInstance().getDriverDB());
         Connection connection = null;
 
-        connection = DriverManager.getConnection(
-                Configuration.getInstance().getUrlDB(),
-                Configuration.getInstance().getUserDB(),
-                Configuration.getInstance().getPassDB());
+//        connection = DriverManager.getConnection(
+//                Configuration.getInstance().getUrlDB(),
+//                Configuration.getInstance().getUserDB(),
+//                Configuration.getInstance().getPassDB());
+        connection = DBConnectionPool.getInstance().getConnection();
 
         return connection;
     }
