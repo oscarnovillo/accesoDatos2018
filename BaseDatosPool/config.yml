@@ -11,7 +11,7 @@ mailPass: alumnodam2
 ##passDB: clasesdaw
 
 driverDB: com.mysql.cj.jdbc.Driver
-urlDB: jdbc:mysql://db4free.net:3306/daw2_pruebas?useSSL=false
+urlDB: jdbc:mysql://db4free.net:3306/daw2_pruebas?serverTimeZone=UTC
 userDB: oscarnovillo
 passDB: 1235b1a9
 #mailFrom: alumno1@iesquevedo.es
