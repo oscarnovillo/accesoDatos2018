@@ -27,15 +27,14 @@ public class MainSqlsErver {
     Connection con = null;
     PreparedStatement stmt = null;
     try {
-       Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+      Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
       //Class.forName("com.mysql.cj.jdbc.Driver");
 
       String connectionUrl =
-                "jdbc:sqlserver://2DAM_PROFESOR;"
+                "jdbc:sqlserver://localhost;"
                 + "database=Tienda;"
-              + "integratedSecurity=true;";
-//                + "user=sa;"
-//                + "password=root;"
+                + "user=sa;"
+                + "password=(RootRoot);";
 //                + "encrypt=true;"
 //                + "trustServerCertificate=false;"
 //                
