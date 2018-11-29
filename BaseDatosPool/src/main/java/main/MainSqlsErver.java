@@ -32,9 +32,9 @@ public class MainSqlsErver {
 
       String connectionUrl =
                 "jdbc:sqlserver://localhost;"
-                + "database=Tienda;"
-                + "user=sa;"
-                + "password=(RootRoot);";
+                + "database=Tienda;";
+//                + "user=sa;"
+//                + "password=(RootRoot);";
 //                + "encrypt=true;"
 //                + "trustServerCertificate=false;"
 //                
@@ -42,7 +42,7 @@ public class MainSqlsErver {
 
       
      con = DriverManager.getConnection(
-                connectionUrl);
+                connectionUrl,"sa","(RootRoot)");
 
       int idActor = 1;
       String selectSql = "SELECT * FROM Table_1";
