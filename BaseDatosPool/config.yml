@@ -10,7 +10,14 @@ smtpPort: 587
 mailPass: alumnodam2
 ##passDB: clasesdaw
 
-driverDB: com.mysql.cj.jdbc.Driver
+dbms: sqlserver
+
+driverDBmysql: com.mysql.cj.jdbc.Driver
+urlDBmysql: jdbc:mysql://db4free.net:3306/daw2_pruebas?serverTimeZone=UTC
+userDBmysqlsqlServer: oscarnovillo
+passDB: 1235b1a9
+
+driverDBsqlserver: com.mysql.cj.jdbc.Driver
 urlDB: jdbc:mysql://db4free.net:3306/daw2_pruebas?serverTimeZone=UTC
 userDB: oscarnovillo
 passDB: 1235b1a9

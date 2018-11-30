@@ -52,6 +52,7 @@ public class Configuration {
 
    
     public String getUrlDB() {
+      
         return urlDB;
     }
 

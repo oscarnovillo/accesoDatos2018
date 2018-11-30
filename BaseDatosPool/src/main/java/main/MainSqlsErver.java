@@ -31,8 +31,7 @@ public class MainSqlsErver {
       //Class.forName("com.mysql.cj.jdbc.Driver");
 
       String connectionUrl =
-                "jdbc:sqlserver://localhost;"
-                + "database=Tienda;";
+                "jdbc:sqlserver://localhost;database=Tienda;";
 //                + "user=sa;"
 //                + "password=(RootRoot);";
 //                + "encrypt=true;"
