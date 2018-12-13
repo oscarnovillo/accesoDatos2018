@@ -188,12 +188,12 @@ public class NotasDao {
 
         } catch (Exception ex) {
             try {
-                Logger.getLogger(AlumnosDao.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AlumnosDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
                 if (con != null) {
                     con.rollback();
                 }
             } catch (SQLException ex1) {
-                Logger.getLogger(AlumnosDao.class.getName()).log(Level.SEVERE, null, ex1);
+                Logger.getLogger(AlumnosDaoImpl.class.getName()).log(Level.SEVERE, null, ex1);
             }
         } finally {
             db.cerrarConexion(con);
@@ -251,7 +251,7 @@ public class NotasDao {
                     nota.getAl(), nota.getAsig(), nota.getNota());
 
         } catch (Exception ex) {
-            Logger.getLogger(AlumnosDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AlumnosDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             db.cerrarConexion(con);
         }
