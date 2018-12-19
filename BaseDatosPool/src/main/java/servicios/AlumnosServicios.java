@@ -23,8 +23,6 @@ public class AlumnosServicios {
   public AlumnosServicios() {
     factory = new FactoriaDao();
   }
-  
-  
 
     public List<Alumno> getAllAlumnos() {
         AlumnosDao dao = factory.getAlumnosDAO

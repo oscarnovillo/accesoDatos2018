@@ -33,7 +33,8 @@ public class AlumnosDaoImpl implements AlumnosDao{
             QueryRunner qr = new QueryRunner();
             ResultSetHandler<List<Alumno>> handler
                     = new BeanListHandler<>(Alumno.class);
-            lista = qr.query(con, "select * FROM alumnos", handler);
+            lista = qr.query(con, "select * FROM alumnos", 
+                    handler);
 
         } catch (Exception ex) {
             Logger.getLogger(AsignaturasDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,7 +79,9 @@ public class AlumnosDaoImpl implements AlumnosDao{
             Number id = qr.insert(con,
                     "INSERT INTO alumnos (NOMBRE, FECHA_NACIMIENTO, MAYOR_EDAD) VALUES(?,?,?)",
                     new ScalarHandler<>(),
-                    alumno.getNombre(), alumno.getFecha_nacimiento(), alumno.getMayor_edad());
+                    alumno.getNombre(), 
+                    alumno.getFecha_nacimiento(), 
+                    alumno.getMayor_edad());
 
             alumno.setId((int) id.longValue());
             con.commit();
