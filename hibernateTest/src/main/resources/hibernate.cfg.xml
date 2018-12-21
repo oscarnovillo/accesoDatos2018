@@ -17,7 +17,7 @@
     <property name="show_sql">true</property>
 
     <mapping class="quevedo.hibernatetest.Ingredient"/>
-    <mapping class="quevedo.hibernatetest.IngredientPotionId"/>
+    <mapping class="quevedo.hibernatetest.IngredientPotionPK"/>
     <mapping class="quevedo.hibernatetest.Main"/>
     <mapping class="quevedo.hibernatetest.Potion"/>
     <mapping class="quevedo.hibernatetest.IngredientPotion"/>

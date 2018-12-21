@@ -22,7 +22,8 @@ public class Main {
 
   public static void main(String[] args) {
 
-    borrarPotion();
+    Ingredient i = getIngredient(13);
+    borrarIngrediente(i);
   }
 
   private static Ingredient getIngredient(int id) {
@@ -31,8 +32,8 @@ public class Main {
     // Open session
     session.beginTransaction();
 
-    Ingredient i = session.get(Ingredient.class, 10);
-    session.delete(i);
+    Ingredient i = session.get(Ingredient.class, id);
+    
     // Commit
     session.getTransaction().commit();
 
@@ -71,7 +72,7 @@ public class Main {
       session.beginTransaction();
       Potion po = session.get(Potion.class,51);
       
-      for (IngredientPotion ip:po.getIngredientsPotionses() )
+      for (IngredientPotion ip:po.getIngredientPotionSet())
           session.delete(ip);
       
       session.delete(po);
@@ -87,7 +88,7 @@ public class Main {
   }
 
   private static void addEntityAlone() {
-    Potion po = new Potion("jj", "fff", new Date(), 0);
+    Potion po = new Potion(1,"jj", "fff", new Date(), 0);
 
     // Create session
     Session session = HibernateUtil.getSessionFactory().openSession();
@@ -108,8 +109,8 @@ public class Main {
       session.getTransaction().begin();
       Potion po = session.get(Potion.class, 51);
       Ingredient i = session.get(Ingredient.class, 10);
-      IngredientPotionId id = new IngredientPotionId(i.getId(), po.getId());
-      IngredientPotion ip = new IngredientPotion(id, i, po, 20, "FFF", 2, 1);
+      IngredientPotionPK id = new IngredientPotionPK(i.getId(), po.getId());
+      IngredientPotion ip = new IngredientPotion(id, 20, "FFF", 2, 1);
       po.setNumberIngredients(po.getNumberIngredients() + 1);
       session.update(po);
       session.save(ip);
@@ -151,16 +152,16 @@ public class Main {
   }
 
   private static void salvarNuevoElemento() {
-    Potion po = new Potion("Lucia", "fff", new Date(), 0);
-    Ingredient i = new Ingredient("pelo murcielado", "largito mejpr");
+    Potion po = new Potion(1,"Lucia", "fff", new Date(), 0);
+    Ingredient i = new Ingredient(1,"pelo murcielado", "largito mejpr");
     Session session = null;
     try {
       session = HibernateUtil.getSessionFactory().openSession();
       session.getTransaction().begin();
       session.save(i);
       session.save(po);
-      IngredientPotionId id = new IngredientPotionId(i.getId(), po.getId());
-      IngredientPotion ip = new IngredientPotion(id, i, po, 20, "FFF", 1, 1);
+      IngredientPotionPK id = new IngredientPotionPK(i.getId(), po.getId());
+      IngredientPotion ip = new IngredientPotion(id, 20, "FFF", 1, 1);
       po.setNumberIngredients(po.getNumberIngredients() + 1);
       session.update(po);
       session.save(ip);
