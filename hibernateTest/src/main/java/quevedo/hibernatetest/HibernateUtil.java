@@ -11,6 +11,7 @@ package quevedo.hibernatetest;
  * and open the template in the editor.
  */
 
+import java.io.File;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -31,7 +32,7 @@ public class HibernateUtil {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
             // config file.
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                .configure("hibernate.cfg.xml")
+                .configure(new File("hibernate.cfg.xml"))
                 .build();
 
             sessionFactory = new Configuration().buildSessionFactory( serviceRegistry );

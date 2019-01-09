@@ -5,6 +5,7 @@
  */
 package quevedo.hibernatetest;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -22,16 +24,27 @@ public class Main {
 
   public static void main(String[] args) {
 
-    Ingredient i = getIngredient(13);
-    borrarIngrediente(i);
+    System.setProperty("log4j.configurationFile", "log4j2.xml");
+    LoggerFactory.getLogger(Main.class.getName()).info("hola");
+    
+    addEntityAlone();
+    Ingredient i = getIngredient(1);
+    selectNamedQuery();
   }
 
+  
+  //Criteria.
+  
+  
+  
+  
   private static Ingredient getIngredient(int id) {
     // Create session
     Session session = HibernateUtil.getSessionFactory().openSession();
     // Open session
     session.beginTransaction();
 
+    
     Ingredient i = session.get(Ingredient.class, id);
     
     // Commit
@@ -88,7 +101,7 @@ public class Main {
   }
 
   private static void addEntityAlone() {
-    Potion po = new Potion(1,"jj", "fff", new Date(), 0);
+    Potion po = new Potion(1,"jj", "fff", LocalDate.now(), 0);
 
     // Create session
     Session session = HibernateUtil.getSessionFactory().openSession();
@@ -100,7 +113,7 @@ public class Main {
     session.getTransaction().commit();
 
     session.close();
-    System.out.println("Potion Id =" + po.getId());
+    System.out.println(po);
   }
 
   private static void addNuevoNM() {
@@ -150,9 +163,24 @@ public class Main {
     });
     session.close();
   }
+  
+  private static void selectNamedQuery()
+  {
+       Session session = HibernateUtil.getSessionFactory().openSession();
+       Query query = session.getNamedQuery("Potion.findByName");
+       query.setParameter("name", "test");
+       
+       List<Potion> list = query.list();
+    list.forEach((p) -> {
+      System.out.println(p);
+    });
+    session.close();
+      
+  }
+          
 
   private static void salvarNuevoElemento() {
-    Potion po = new Potion(1,"Lucia", "fff", new Date(), 0);
+    Potion po = new Potion(1,"Lucia", "fff", LocalDate.now(), 0);
     Ingredient i = new Ingredient(1,"pelo murcielado", "largito mejpr");
     Session session = null;
     try {

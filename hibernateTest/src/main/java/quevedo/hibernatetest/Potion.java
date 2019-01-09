@@ -6,6 +6,7 @@
 package quevedo.hibernatetest;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -21,8 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 
 /**
  *
@@ -46,22 +46,21 @@ public class Potion implements Serializable {
   @Column(name = "id")
   private Integer id;
   @Basic(optional = false)
-  @NotNull
-  @Size(min = 1, max = 250)
+  
   @Column(name = "name")
   private String name;
   @Basic(optional = false)
-  @NotNull
-  @Size(min = 1, max = 250)
+  
   @Column(name = "description")
   private String description;
   @Basic(optional = false)
-  @NotNull
+  
   @Column(name = "creation_date")
-  @Temporal(TemporalType.DATE)
-  private Date creationDate;
+  
+  
+  private LocalDate creationDate;
   @Basic(optional = false)
-  @NotNull
+ 
   @Column(name = "number_ingredients")
   private int numberIngredients;
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "potion")
@@ -74,7 +73,7 @@ public class Potion implements Serializable {
     this.id = id;
   }
 
-  public Potion(Integer id, String name, String description, Date creationDate, int numberIngredients) {
+  public Potion(Integer id, String name, String description, LocalDate creationDate, int numberIngredients) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -106,11 +105,11 @@ public class Potion implements Serializable {
     this.description = description;
   }
 
-  public Date getCreationDate() {
+  public LocalDate getCreationDate() {
     return creationDate;
   }
 
-  public void setCreationDate(Date creationDate) {
+  public void setCreationDate(LocalDate creationDate) {
     this.creationDate = creationDate;
   }
 
@@ -152,7 +151,7 @@ public class Potion implements Serializable {
 
   @Override
   public String toString() {
-    return "quevedo.hibernatetest.Potion[ id=" + id + " ]";
+    return "quevedo.hibernatetest.Potion[ id=" + id + creationDate+" ]";
   }
   
 }
