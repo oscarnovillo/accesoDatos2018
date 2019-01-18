@@ -154,7 +154,7 @@ public class Main {
   private static void selectAll() {
     // select *
     Session session = HibernateUtil.getSessionFactory().openSession();
-    Query query = session.createQuery("From Potions");
+    Query query = session.createQuery("From Potions ");
     //query.setParameter("id", "255");
     List<Potion> list = query.list();
     list.forEach((p) -> {
@@ -198,6 +198,29 @@ public class Main {
     } finally {
       session.close();
     }
+  }
+  
+  
+  public List getAllByCustomerId(int idCustomer) {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Query query = session.createQuery("select p.* From Purchase as p,Customer as c "
+            + " where c.idCustomer = :id");
+    query.setParameter("id", idCustomer);
+
+    query = session.createNamedQuery("Potion.extra");
+    query.setParameter("id", idCustomer);
+    
+    
+    query = session.createNativeQuery("select * from potions").addEntity(Potion.class);
+    
+    List list = query.list();
+
+    
+    query = session.createNativeQuery("select * from potions");
+    query.executeUpdate();
+    
+    session.close();
+    return list;
   }
 
 }
