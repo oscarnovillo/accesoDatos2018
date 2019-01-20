@@ -8,8 +8,7 @@ package quevedo.hibernatetest;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
@@ -25,7 +24,7 @@ public class Main {
   public static void main(String[] args) {
 
     System.setProperty("log4j.configurationFile", "log4j2.xml");
-    LoggerFactory.getLogger(Main.class.getName()).info("hola");
+    LoggerFactory.getLogger(Main.class.getName()).info("probando HIBERNTE");
     
     addEntityAlone();
     Ingredient i = getIngredient(1);
@@ -67,7 +66,7 @@ public class Main {
       session.getTransaction().commit();
 
     } catch (ConstraintViolationException e) {
-      Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
+      LoggerFactory.getLogger(Main.class.getName()).error("ERROR EN LO QUE SEA",e);
     } finally {
       session.close();
     }
@@ -93,7 +92,7 @@ public class Main {
       session.getTransaction().commit();
 
     } catch (ConstraintViolationException e) {
-      Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
+      LoggerFactory.getLogger(Main.class.getName()).error(null, e);
     } finally {
       session.close();
     }
@@ -155,7 +154,7 @@ public class Main {
   private static void selectAll() {
     // select *
     Session session = HibernateUtil.getSessionFactory().openSession();
-    Query query = session.createQuery("From Potions");
+    Query query = session.createQuery("From Potions ");
     //query.setParameter("id", "255");
     List<Potion> list = query.list();
     list.forEach((p) -> {
@@ -199,6 +198,29 @@ public class Main {
     } finally {
       session.close();
     }
+  }
+  
+  
+  public List getAllByCustomerId(int idCustomer) {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Query query = session.createQuery("select p.* From Purchase as p,Customer as c "
+            + " where c.idCustomer = :id");
+    query.setParameter("id", idCustomer);
+
+    query = session.createNamedQuery("Potion.extra");
+    query.setParameter("id", idCustomer);
+    
+    
+    query = session.createNativeQuery("select * from potions").addEntity(Potion.class);
+    
+    List list = query.list();
+
+    
+    query = session.createNativeQuery("select * from potions");
+    query.executeUpdate();
+    
+    session.close();
+    return list;
   }
 
 }

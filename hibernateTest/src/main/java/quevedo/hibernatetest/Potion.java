@@ -32,7 +32,7 @@ import javax.persistence.TemporalType;
 @Table(name = "potions")
 @NamedQueries({
   @NamedQuery(name = "Potion.findAll", query = "SELECT p FROM Potion p")
-  , @NamedQuery(name = "Potion.findById", query = "SELECT p FROM Potion p WHERE p.id = :id")
+  , @NamedQuery(name = "Potion.findById", query = "SELECT p FROM Potion p WHERE p.id = :id ")
   , @NamedQuery(name = "Potion.findByName", query = "SELECT p FROM Potion p WHERE p.name = :name")
   , @NamedQuery(name = "Potion.findByDescription", query = "SELECT p FROM Potion p WHERE p.description = :description")
   , @NamedQuery(name = "Potion.findByCreationDate", query = "SELECT p FROM Potion p WHERE p.creationDate = :creationDate")
@@ -42,7 +42,6 @@ public class Potion implements Serializable {
   private static final long serialVersionUID = 1L;
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Basic(optional = false)
   @Column(name = "id")
   private Integer id;
   @Basic(optional = false)
@@ -63,7 +62,7 @@ public class Potion implements Serializable {
  
   @Column(name = "number_ingredients")
   private int numberIngredients;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "potion")
+  @OneToMany( mappedBy = "potion")
   private Set<IngredientPotion> ingredientPotionSet;
 
   public Potion() {
