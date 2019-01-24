@@ -152,7 +152,7 @@ i.setIdCustomer(1);
 
         session = HibernateUtil.getSessionFactory().openSession();
 
-        query = session.createQuery("delete from Review as r where r.purchase in (select idPurchase FROM Purchase p where p.customer = :id )");
+        query = session.createQuery("delete from Review as r where r.purchase in (select idPurchase FROM Purchase p where p.customer.idCustomer = :id )");
         query.setParameter("id", 20);
 
         session.beginTransaction();

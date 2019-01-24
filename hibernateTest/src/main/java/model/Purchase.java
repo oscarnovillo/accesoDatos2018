@@ -54,12 +54,12 @@ public class Purchase {
       
 
    
-    private LocalDateTime date;
+    private LocalDate date;
 
     public Purchase() {
     }
 
-    public Purchase(int idPurchase,  int idItem, LocalDateTime date) {
+    public Purchase(int idPurchase,  int idItem, LocalDate date) {
         this.idPurchase = idPurchase;
         
         
@@ -80,11 +80,11 @@ public class Purchase {
 
   
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
