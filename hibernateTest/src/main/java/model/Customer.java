@@ -85,9 +85,7 @@ public class Customer implements Serializable {
     }
     
 
-    public String toStringShort() {
-        return Integer.toString(idCustomer) + " - " + name;
-    }
+   
 
     public String toStringTexto() {
         return idCustomer + "/" + name + "/" + telephone + "/" + address;

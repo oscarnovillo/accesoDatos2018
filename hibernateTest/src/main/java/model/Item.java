@@ -33,7 +33,7 @@ public class Item implements Serializable {
     private String company;
     private double price;
     @JoinColumn(name = "idItem", referencedColumnName = "idItem", insertable = false, updatable = false)
-    @OneToMany(fetch=FetchType.EAGER)
+    @OneToMany(fetch=FetchType.LAZY)
     private Set<Purchase> purchases;
 
     

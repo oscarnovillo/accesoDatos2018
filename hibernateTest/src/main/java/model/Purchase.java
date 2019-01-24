@@ -6,6 +6,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,10 @@ public class Purchase {
     @Id
     @GeneratedValue
     private int idPurchase;
-    private int idCustomer;
+
+    @JoinColumn(name = "idCustomer", referencedColumnName = "idCustomer", insertable = false, updatable = false)
+    @ManyToOne(fetch=FetchType.LAZY, optional = false)
+    private Customer customer;
     @JoinColumn(name = "idItem", referencedColumnName = "idItem", insertable = false, updatable = false)
     @ManyToOne(fetch=FetchType.LAZY, optional = false)
     private Item item;
@@ -39,25 +43,30 @@ public class Purchase {
   public void setItem(Item item) {
     this.item = item;
   }
+
+  public Customer getCustomer() {
+    return customer;
+  }
+
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
+  }
       
 
-    private int idItem; 
-    
-    private LocalDate date;
+   
+    private LocalDateTime date;
 
     public Purchase() {
     }
 
-    public Purchase(int idPurchase, int idCustomer, int idItem, LocalDate date) {
+    public Purchase(int idPurchase,  int idItem, LocalDateTime date) {
         this.idPurchase = idPurchase;
-        this.idCustomer = idCustomer;
-        this.idItem = idItem;
+        
+        
         this.date = date;
     }
 
-    public Purchase(int customer, int item, LocalDate date) {
-        this(0, customer, item, date);
-    }
+
 
     public int getIdPurchase() {
         return idPurchase;
@@ -67,33 +76,21 @@ public class Purchase {
         this.idPurchase = idPurchase;
     }
 
-    public int getIdCustomer() {
-        return idCustomer;
-    }
+  
 
-    public void setIdCustomer(int customer) {
-        this.idCustomer = customer;
-    }
+  
 
-    public int getIdItem() {
-        return this.idItem;
-    }
-
-    public void setIdItem(int item) {
-        this.idItem = item;
-    }
-
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
     @Override
     public String toString() {
-        return "ID: " + idPurchase + "  Customer: " + idCustomer + "  Item: " +idItem+  "  Date: " + date;
+        return "ID: " + idPurchase + "  Customer: " + "  Item: " +  "  Date: " + date;
     }
 
     public String toStringForClientInfo() {
@@ -101,6 +98,6 @@ public class Purchase {
     }
 
     public String toStringTexto() {
-        return idPurchase + ";" + idCustomer + ";" +   ";" + date;
+        return idPurchase + ";" + ";" +   ";" + date;
     }
 }
