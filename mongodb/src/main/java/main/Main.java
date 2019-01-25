@@ -11,8 +11,15 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import java.time.LocalDate;
 import java.util.function.Consumer;
+import model.Customer;
+import model.CustomerRepository;
+import model.Purchase;
 import org.bson.Document;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.support.SimpleMongoRepository;
 
 /**
  *
@@ -65,11 +72,25 @@ public class Main {
         
         MongoDatabase db = mongoClient.getDatabase("Test");
         
-        MongoCollection<Document> coll = db.getCollection("test");
-
-        getAllDocuments(coll);
-
-        db.listCollectionNames().forEach((Consumer<String>) System.out::println);
+        MongoTemplate mp = new MongoTemplate(mongoClient,"Test" );
+        Customer c = new Customer(4,"jj", "kk", "llll", 0);
+        Purchase p = new Purchase(1,1,LocalDate.now());
+        c.getPurchases().add(p);
+        mp.insert(c);
+        
+        
+        Customer c1 = mp.findById(2, Customer.class);
+        
+        System.out.println(c1);
+        c1.getPurchases().forEach((Consumer<Purchase>) System.out::println);
+        
+//        MongoRepository<Customer,String> repository = new SimpleMongoRepository<Customer,String>();
+        
+//        MongoCollection<Document> coll = db.getCollection("test");
+//
+//        getAllDocuments(coll);
+//
+//        db.listCollectionNames().forEach((Consumer<String>) System.out::println);
     }
 
 }
