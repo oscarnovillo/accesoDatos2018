@@ -95,10 +95,8 @@ public static long generateSequence(String seqName,MongoTemplate mongo) {
     
 
         
-       Customer custom = mp.findOne(query(where("id").gt(2)),Customer.class);
-        System.out.println(custom);
-        
-       // lista.forEach(System.out::println);
+       lista = mp.find(query(where("idCustomer").gt(2)),Customer.class);
+       lista.forEach(System.out::println);
 
 
 
