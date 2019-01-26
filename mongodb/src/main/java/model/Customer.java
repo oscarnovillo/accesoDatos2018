@@ -27,7 +27,7 @@ public class Customer implements Serializable {
  
     
     @Id
-    private int idCustomer;
+    private long idCustomer;
     private String name;
     private String telephone;
     private String address;
@@ -47,7 +47,7 @@ public class Customer implements Serializable {
         purchases = new HashSet<>();
     }
 
-    public Customer(int idCustomer, String name, String phone, String address, int idUser) {
+    public Customer(long idCustomer, String name, String phone, String address, int idUser) {
         this();
         this.idCustomer = idCustomer;
         this.name = name;
@@ -60,11 +60,11 @@ public class Customer implements Serializable {
         this(0,name,phone,address,idUser);
     }
     
-    public int getIdCustomer() {
+    public long getIdCustomer() {
         return idCustomer;
     }
 
-    public void setIdCustomer(int idCustomer) {
+    public void setIdCustomer(long idCustomer) {
         this.idCustomer = idCustomer;
     }
 
