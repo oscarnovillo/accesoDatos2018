@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -109,7 +111,13 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "ID: " + idCustomer + "  Name: " + name + "  Phone: " + telephone + "  Address: " + address;
+        
+        String text =  "ID: " + idCustomer + "  Name: " + name + "  Phone: " + telephone + "  Address: " + address+"purchases ";
+         StringBuilder b = new StringBuilder();
+            this.purchases.forEach(b::append);
+
+        
+        return text+b.toString();
     }
 
     @Override
