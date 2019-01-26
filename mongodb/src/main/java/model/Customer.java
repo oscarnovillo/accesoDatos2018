@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -20,6 +21,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "customer")
 public class Customer implements Serializable {
 
+    
+    @Transient
+    public static final String SEQUENCE_NAME = "customer_sequence";
+ 
+    
     @Id
     private int idCustomer;
     private String name;
