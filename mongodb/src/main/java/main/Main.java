@@ -5,6 +5,7 @@
  */
 package main;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
@@ -14,6 +15,7 @@ import com.mongodb.client.MongoDatabase;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -76,7 +78,7 @@ public class Main {
                 .forEach((Consumer<String>) System.out::println);
 
         MongoDatabase db = mongoClient.getDatabase("Test");
-        MongoCollection<Document> col =   db.getCollection("customer");
+        MongoCollection<Document> col =   db.getCollection("items");
         Iterator i = col.find().iterator();
         while (i.hasNext())
         {
@@ -84,11 +86,38 @@ public class Main {
         }
 
 	
-//	Document d = new Document();
-//	d.put("purchases", col);
-//	
-//	col.insertOne(d);
+	Document d = new Document();
+	d.put("name", "item2");
+        d.put("company","dfd S.A");
+        d.put("price","25.5");
+        List<Integer> clientes= new ArrayList<>();
+        clientes.add(0);
+        d.put("clientes",clientes);
+	
+	col.insertOne(d);
+        
+        Document buscar = new Document();
+	buscar.put("name", "item2");
+        Document update = new Document();
+        update.put("name", "item2ggg");
+        Document update1 = new Document();
+        update1.put("$set",update);
 
+        col.updateOne(buscar, update1);
+
+       
+        update = new Document();
+        update.put("clientes",9);
+        
+        update1 = new Document();
+        update1.put("$push",update);
+
+        col.updateMany(buscar, update1);
+
+
+
+        
+        
         System.out.println(" CON SPRING ");
         
         MongoTemplate mp = new MongoTemplate(mongoClient, "Test");
@@ -132,6 +161,7 @@ public class Main {
 //        getAllDocuments(coll);
 //
 //        db.listCollectionNames().forEach((Consumer<String>) System.out::println);
+
     }
 
 }
