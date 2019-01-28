@@ -16,62 +16,49 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author Laura
  */
 
-@Document
+
 public class Purchase {
 
 
-    @Id
-    private int idPurchase;
-
-
-    private Customer customer;
+    
 
     private int iditem;
     private String nombreitem;
 
-  public Item getItem() {
-    return item;
-  }
+    public Purchase(int iditem, String nombreitem, LocalDate date) {
+        this.iditem = iditem;
+        this.nombreitem = nombreitem;
+        this.date = date;
+    }
 
-  public void setItem(Item item) {
-    this.item = item;
-  }
-
-  public Customer getCustomer() {
-    return customer;
-  }
-
-  public void setCustomer(Customer customer) {
-    this.customer = customer;
-  }
-      
-
-   
+    @Override
+    public String toString() {
+        return "Purchase{" + "iditem=" + iditem + ", nombreitem=" + nombreitem + ", date=" + date + '}';
+    }
     private LocalDate date;
 
     public Purchase() {
     }
-
-    public Purchase(int idPurchase,  int idItem, LocalDate date) {
-        this.idPurchase = idPurchase;
-        
-        
-        this.date = date;
+    
+    
+    
+    
+    public int getIditem() {
+        return iditem;
     }
 
-
-
-    public int getIdPurchase() {
-        return idPurchase;
+    public void setIditem(int iditem) {
+        this.iditem = iditem;
     }
 
-    public void setIdPurchase(int idPurchase) {
-        this.idPurchase = idPurchase;
+    public String getNombreitem() {
+        return nombreitem;
     }
 
-  
+    public void setNombreitem(String nombreitem) {
+        this.nombreitem = nombreitem;
+    }
 
-  
 
     public LocalDate getDate() {
         return date;
@@ -81,16 +68,5 @@ public class Purchase {
         this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return "ID: " + idPurchase + "  Customer: " + "  Item: " +  "  Date: " + date;
-    }
-
-    public String toStringForClientInfo() {
-        return "ID: " + idPurchase + "  Item: " +   "  Date: " + date + "\n";
-    }
-
-    public String toStringTexto() {
-        return idPurchase + ";" + ";" +   ";" + date;
-    }
+   
 }

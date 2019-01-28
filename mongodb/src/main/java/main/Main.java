@@ -21,6 +21,7 @@ import java.util.function.Consumer;
 import model.Customer;
 import model.DatabaseSequence;
 import model.Purchase;
+import model.TipoUsuario;
 import org.bson.Document;
 import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -83,18 +84,25 @@ public class Main {
         }
 
 	
-	Document d = new Document();
-	d.put("purchases", col);
-	
-	col.insertOne(d);
+//	Document d = new Document();
+//	d.put("purchases", col);
+//	
+//	col.insertOne(d);
 
         System.out.println(" CON SPRING ");
         
         MongoTemplate mp = new MongoTemplate(mongoClient, "Test");
-        Customer c = new Customer(generateSequence(Customer.SEQUENCE_NAME, mp), "jj", "kk", "llll", 0);
-        Purchase p = new Purchase(1, 1, LocalDate.now());
+        Customer c = new Customer(generateSequence(Customer.SEQUENCE_NAME, mp), "jj", "kk", "llll","a,2,","u",TipoUsuario.USUARIO);
+        Purchase p = new Purchase(1,"item", LocalDate.now());
         c.getPurchases().add(p);
         mp.insert(c);
+        
+          c = new Customer(generateSequence(Customer.SEQUENCE_NAME, mp), "", null, null,"a,2,","u",TipoUsuario.USUARIO);
+         p = new Purchase(1,"item cito ", LocalDate.now());
+        c.getPurchases().add(p);
+        mp.insert(c);
+
+        
 
         List<Customer> lista = mp.findAll(Customer.class);
 

@@ -53,18 +53,48 @@ public class Customer implements Serializable {
         purchases = new HashSet<>();
     }
 
-    public Customer(long idCustomer, String name, String phone, String address, int idUser) {
+    public Customer(long idCustomer, String name, String telephone, String address, String nombreuser, String passwd, TipoUsuario type) {
         this();
         this.idCustomer = idCustomer;
         this.name = name;
+        this.telephone = telephone;
         this.address = address;
-        this.telephone = phone;
-        
+        this.nombreuser = nombreuser;
+        this.passwd = passwd;
+        this.type = type;
     }
 
-    public Customer(String name, String phone, String address, int idUser) {
-        this(0,name,phone,address,idUser);
+    
+    
+    public Customer(String name, String telephone, String address, String nombreuser, String passwd, TipoUsuario type) {
+        this(0, name, telephone, address, nombreuser, passwd, type);
     }
+
+    public String getNombreuser() {
+        return nombreuser;
+    }
+
+    public void setNombreuser(String nombreuser) {
+        this.nombreuser = nombreuser;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+
+    public TipoUsuario getType() {
+        return type;
+    }
+
+    public void setType(TipoUsuario type) {
+        this.type = type;
+    }
+
+
     
     public long getIdCustomer() {
         return idCustomer;
@@ -98,16 +128,7 @@ public class Customer implements Serializable {
         this.address = address;
     }
 
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-    
-
-   
+  
 
     public String toStringTexto() {
         return idCustomer + "/" + name + "/" + telephone + "/" + address;
