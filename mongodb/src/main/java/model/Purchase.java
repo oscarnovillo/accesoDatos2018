@@ -26,7 +26,8 @@ public class Purchase {
 
     private Customer customer;
 
-    private Item item;
+    private int iditem;
+    private String nombreitem;
 
   public Item getItem() {
     return item;

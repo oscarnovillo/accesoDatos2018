@@ -82,6 +82,12 @@ public class Main {
             System.out.println(i.next());
         }
 
+	
+	Document d = new Document();
+	d.put("purchases", col);
+	
+	col.insertOne(d);
+
         System.out.println(" CON SPRING ");
         
         MongoTemplate mp = new MongoTemplate(mongoClient, "Test");

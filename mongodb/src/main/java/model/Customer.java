@@ -30,10 +30,14 @@ public class Customer implements Serializable {
     
     @Id
     private long idCustomer;
+    
+    
     private String name;
     private String telephone;
     private String address;
-    private int idUser;
+    private String nombreuser;
+    private String passwd;
+    private TipoUsuario type;
     private Set<Purchase> purchases;
 
     public Set<Purchase> getPurchases() {
@@ -55,7 +59,7 @@ public class Customer implements Serializable {
         this.name = name;
         this.address = address;
         this.telephone = phone;
-        this.idUser = idUser;
+        
     }
 
     public Customer(String name, String phone, String address, int idUser) {

@@ -21,8 +21,7 @@ public class Item implements Serializable {
     private String name;
     private String company;
     private double price;
-
-    private Set<Purchase> purchases;
+    private Set<Integer> clientes;
 
     
     
