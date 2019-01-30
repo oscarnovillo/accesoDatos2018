@@ -14,8 +14,11 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -38,84 +41,87 @@ import static org.springframework.data.mongodb.core.query.Update.update;
  */
 public class Main {
 
-    // Fetch all the documents from the mongo collection.
-    private static void getAllDocuments(MongoCollection<Document> col) {
+  // Fetch all the documents from the mongo collection.
+  private static void getAllDocuments(MongoCollection<Document> col) {
 
-        // Performing a read operation on the collection.
-        FindIterable<Document> fi = col.find();
+    // Performing a read operation on the collection.
+    FindIterable<Document> fi = col.find();
 
-        MongoCursor<Document> cursor = fi.iterator();
+    MongoCursor<Document> cursor = fi.iterator();
 
-        try {
+    try {
 
-            while (cursor.hasNext()) {
+      while (cursor.hasNext()) {
 
-                System.out.println(cursor.next().toJson());
+	System.out.println(cursor.next().toJson());
 
-            }
+      }
 
-        } finally {
+    } finally {
 
-            cursor.close();
-
-        }
+      cursor.close();
 
     }
 
-    public static long generateSequence(String seqName, MongoTemplate mongo) {
-        DatabaseSequence counter = mongo.findAndModify(query(where("_id").is(seqName)),
-                new Update().inc("seq", 1), options().returnNew(true).upsert(true),
-                DatabaseSequence.class);
-        return !Objects.isNull(counter) ? counter.getSeq() : 5;
+  }
+
+  public static long generateSequence(String seqName, MongoTemplate mongo) {
+    DatabaseSequence counter = mongo.findAndModify(query(where("_id").is(seqName)),
+	    new Update().inc("seq", 1), options().returnNew(true).upsert(true),
+	    DatabaseSequence.class);
+    return !Objects.isNull(counter) ? counter.getSeq() : 5;
+  }
+
+  public static void main(String[] args) {
+    System.setProperty("log4j.configurationFile", "log4j2.xml");
+
+    MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://oscar:YIpRRecZrUoOLmFX@cluster0-w4glh.mongodb.net/test?retryWrites=true"));
+
+    mongoClient.listDatabaseNames()
+	    .forEach((Consumer<String>) System.out::println);
+
+    MongoDatabase db = mongoClient.getDatabase("Test");
+    MongoCollection<Document> col = db.getCollection("items");
+    Iterator i = col.find().iterator();
+    while (i.hasNext()) {
+      Document d = (Document) i.next();
+      if (null != d.get("date")) {
+	LocalDateTime fecha = ((Date) d.get("date")).toInstant().atZone(ZoneId.of("UTC")).toLocalDateTime();
+	System.out.println(d.get("name") + " " + fecha);
+      }
     }
 
-    public static void main(String[] args) {
-        System.setProperty("log4j.configurationFile", "log4j2.xml");
+    Document d = new Document();
+    d.put("name", "item2");
+    d.put("company", "dfd S.A");
+    d.put("price", "25.5");
+    d.put("date", LocalDateTime.of(2000, Month.MARCH, 22, 10, 10, 0));
+    List<Integer> clientes = new ArrayList<>();
+    clientes.add(0);
+    d.put("clientes", clientes);
 
-        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://oscar:YIpRRecZrUoOLmFX@cluster0-w4glh.mongodb.net/test?retryWrites=true"));
+    col.insertOne(d);
 
-        mongoClient.listDatabaseNames()
-                .forEach((Consumer<String>) System.out::println);
+    Document buscar = new Document();
+    buscar.put("name", "item2");
+    Document update = new Document();
+    update.put("name", "item2ggg");
+    Document update1 = new Document();
+    update1.put("$set", update);
 
-        MongoDatabase db = mongoClient.getDatabase("Test");
-        MongoCollection<Document> col =   db.getCollection("items");
-        Iterator i = col.find().iterator();
-        while (i.hasNext())
-        {
-            System.out.println(i.next());
-        }
+    col.updateOne(buscar, update1);
 
-	
-	Document d = new Document();
-	d.put("name", "item2");
-        d.put("company","dfd S.A");
-        d.put("price","25.5");
-        List<Integer> clientes= new ArrayList<>();
-        clientes.add(0);
-        d.put("clientes",clientes);
-	
-	col.insertOne(d);
-        
-        Document buscar = new Document();
-	buscar.put("name", "item2");
-        Document update = new Document();
-        update.put("name", "item2ggg");
-        Document update1 = new Document();
-        update1.put("$set",update);
+    update = new Document();
+    update.put("clientes", 9);
 
-        col.updateOne(buscar, update1);
+    update1 = new Document();
+    update1.put("$push", update);
 
-       
-        update = new Document();
-        update.put("clientes",9);
-        
-        update1 = new Document();
-        update1.put("$push",update);
+    col.updateMany(buscar, update1);
 
-        col.updateMany(buscar, update1);
+    getAllDocuments(col);
 
-
-
+    /*
         
         
         System.out.println(" CON SPRING ");
@@ -161,7 +167,7 @@ public class Main {
 //        getAllDocuments(coll);
 //
 //        db.listCollectionNames().forEach((Consumer<String>) System.out::println);
-
-    }
+     */
+  }
 
 }
