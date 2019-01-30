@@ -89,6 +89,11 @@ public class Main {
 	LocalDateTime fecha = ((Date) d.get("date")).toInstant().atZone(ZoneId.of("UTC")).toLocalDateTime();
 	System.out.println(d.get("name") + " " + fecha);
       }
+      if (null != d.get("clientes")) {
+	ArrayList<Integer> sub = (ArrayList< Integer>) d.get("clientes");
+	sub.get(0);
+      }
+
     }
 
     Document d = new Document();
