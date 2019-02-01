@@ -53,7 +53,7 @@ public class Main {
 
       while (cursor.hasNext()) {
 
-	System.out.println(cursor.next().toJson());
+	System.out.println(cursor.next());
 
       }
 
@@ -77,6 +77,11 @@ public class Main {
 
     MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://oscar:YIpRRecZrUoOLmFX@cluster0-w4glh.mongodb.net/test?retryWrites=true"));
 
+    for (String s :mongoClient.listDatabaseNames() )
+    {
+      System.out.println(s);
+    }
+    
     mongoClient.listDatabaseNames()
 	    .forEach((Consumer<String>) System.out::println);
 
@@ -86,7 +91,8 @@ public class Main {
     while (i.hasNext()) {
       Document d = (Document) i.next();
       if (null != d.get("date")) {
-	LocalDateTime fecha = ((Date) d.get("date")).toInstant().atZone(ZoneId.of("UTC")).toLocalDateTime();
+	LocalDateTime fecha = (
+                (Date) d.get("date")).toInstant().atZone(ZoneId.of("UTC")).toLocalDateTime();
 	System.out.println(d.get("name") + " " + fecha);
       }
       if (null != d.get("clientes")) {
@@ -111,6 +117,7 @@ public class Main {
     buscar.put("name", "item2");
     Document update = new Document();
     update.put("name", "item2ggg");
+    
     Document update1 = new Document();
     update1.put("$set", update);
 

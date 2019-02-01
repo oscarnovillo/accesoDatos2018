@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.Set;
+import org.bson.types.ObjectId;
 
 
 /**
@@ -17,7 +18,7 @@ import java.util.Set;
 public class Item implements Serializable {
 
 
-    private int idItem;
+    private ObjectId idItem;
     private String name;
     private String company;
     private double price;
@@ -28,7 +29,7 @@ public class Item implements Serializable {
     public Item() {
     }
 
-    public Item(int idItem, String name, String company, double price) {
+    public Item(ObjectId idItem, String name, String company, double price) {
         this.idItem = idItem;
         this.name = name;
         this.company = company;
@@ -41,11 +42,11 @@ public class Item implements Serializable {
         this.price = price;
     }
 
-    public int getIdItem() {
+    public ObjectId getIdItem() {
         return idItem;
     }
 
-    public void setIdItem(int idItem) {
+    public void setIdItem(ObjectId idItem) {
         this.idItem = idItem;
     }
 
