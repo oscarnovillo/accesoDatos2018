@@ -112,6 +112,7 @@ public class Main {
     d.put("clientes", clientes);
 
     col.insertOne(d);
+    System.out.println("ID "+d.get("_id"));
 
     Document buscar = new Document();
     buscar.put("name", "item2");
