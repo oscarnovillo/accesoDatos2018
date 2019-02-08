@@ -12,6 +12,10 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.in;
+import static com.mongodb.client.model.Filters.nin;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,6 +32,7 @@ import model.DatabaseSequence;
 import model.Purchase;
 import model.TipoUsuario;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -69,14 +74,14 @@ public class Main {
     DatabaseSequence counter = mongo.findAndModify(query(where("_id").is(seqName)),
 	    new Update().inc("seq", 1), options().returnNew(true).upsert(true),
 	    DatabaseSequence.class);
-    return !Objects.isNull(counter) ? counter.getSeq() : 5;
+    return !Objects.isNull(counter) ? counter.getSeq() : 1;
   }
 
   public static void main(String[] args) {
     System.setProperty("log4j.configurationFile", "log4j2.xml");
 
     MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://oscar:YIpRRecZrUoOLmFX@cluster0-w4glh.mongodb.net/test?retryWrites=true"));
-
+/*
     for (String s :mongoClient.listDatabaseNames() )
     {
       System.out.println(s);
@@ -132,9 +137,16 @@ public class Main {
 
     col.updateMany(buscar, update1);
 
+    buscar = new Document();
+    buscar.put("name","item2");
+    buscar.put("clientes",9);
+            
+    col.find(and(eq("name","item2"),nin("clientes",9))).first();
+    
+    
     getAllDocuments(col);
 
-    /*
+  */
         
         
         System.out.println(" CON SPRING ");
@@ -156,7 +168,8 @@ public class Main {
 
         lista.forEach(System.out::println);
 
-        lista = mp.find(query(where("idCustomer").gt(2)), Customer.class);
+        lista = mp.find(
+                query(where("idCustomer").gt(2).andOperator(where("idCustomer").is(2))), Customer.class);
         lista.forEach(System.out::println);
         mp.updateMulti(query(where("idCustomer").is(2)), update("purchases.1._id",2), Customer.class);
        
@@ -180,7 +193,9 @@ public class Main {
 //        getAllDocuments(coll);
 //
 //        db.listCollectionNames().forEach((Consumer<String>) System.out::println);
-     */
+     
   }
+
+ 
 
 }
