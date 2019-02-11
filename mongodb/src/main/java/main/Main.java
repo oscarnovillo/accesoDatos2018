@@ -12,10 +12,12 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.in;
 import static com.mongodb.client.model.Filters.nin;
+import com.mongodb.client.result.UpdateResult;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -36,6 +38,7 @@ import org.bson.conversions.Bson;
 import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
+import org.springframework.data.mongodb.core.query.Query;
 import static org.springframework.data.mongodb.core.query.Query.query;
 import org.springframework.data.mongodb.core.query.Update;
 import static org.springframework.data.mongodb.core.query.Update.update;
@@ -155,28 +158,40 @@ public class Main {
         Customer c = new Customer(generateSequence(Customer.SEQUENCE_NAME, mp), "jj", "kk", "llll","a,2,","u",TipoUsuario.USUARIO);
         Purchase p = new Purchase(1,"item", LocalDate.now());
         c.getPurchases().add(p);
-        mp.insert(c);
+        //mp.insert(c);
         
           c = new Customer(generateSequence(Customer.SEQUENCE_NAME, mp), "", null, null,"a,2,","u",TipoUsuario.USUARIO);
          p = new Purchase(1,"item cito ", LocalDate.now());
         c.getPurchases().add(p);
-        mp.insert(c);
+        //mp.insert(c);
 
         
 
-        List<Customer> lista = mp.findAll(Customer.class);
-
-        lista.forEach(System.out::println);
-
-        lista = mp.find(
-                query(where("idCustomer").gt(2).andOperator(where("idCustomer").is(2))), Customer.class);
-        lista.forEach(System.out::println);
-        mp.updateMulti(query(where("idCustomer").is(2)), update("purchases.1._id",2), Customer.class);
+        
+//        lista = mp.find(
+//                query(where("idCustomer").gt(2).andOperator(where("idCustomer").is(2))), Customer.class);
+//        lista.forEach(System.out::println);
+//        mp.updateMulti(query(where("idCustomer").is(2)), update("purchases.1._id",2), Customer.class);
        
+	Purchase p1 = new Purchase(1,"item", LocalDate.now());
+	
+	Query query = new Query(where("iditem").is(1));
+	query.fields().include("purchases");
+	
+	UpdateResult up = mp.updateMulti(new Query(),
+        new Update().pull("purchases",query),Customer.class);
+	
+//	   System.out.println(up.getMatchedCount()+ " "+up.getModifiedCount());
+	
 //
-       lista = mp.find(query(where("purchases.date").gt(LocalDate.of(2001,1,1))), Customer.class);
-       
+
+List<Customer> lista = mp.findAll(Customer.class);
+
         lista.forEach(System.out::println);
+
+//       lista = mp.find(query(where("purchases.date").gt(LocalDate.of(2001,1,1))), Customer.class);
+//       
+//        lista.forEach(System.out::println);
 //        lista.forEach(System.out::println);
 //        c = mp.findOne(query(where("idCustomer").is(2)), Customer.class);
 //        c.getPurchases().add(new Purchase(1,1,LocalDate.of(2000,1,1)));
