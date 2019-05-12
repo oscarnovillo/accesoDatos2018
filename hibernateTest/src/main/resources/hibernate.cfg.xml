@@ -4,10 +4,10 @@
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://dam2.mysql.iesquevedo.es:3335/webstorelaura?useSSL=false</property>
+        <property name="hibernate.connection.url">jdbc:mysql://dam2.mysql.iesquevedo.es:3335/pruebas?serverTimeZone=UTC&amp;allowPublicKeyRetrieval=true</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
-    		
+        <property key="hibernate.hbm2ddl.auto">update</property>    		
     
         <!-- pool configuration -->
         <property name="hibernate.hikari.connectionTimeout">20000</property>

@@ -21,13 +21,18 @@ import org.slf4j.LoggerFactory;
  */
 public class Main {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
 
-    System.setProperty("log4j.configurationFile", "log4j2.xml");
+    //System.setProperty("log4j.configurationFile", "log4j2.xml");
     LoggerFactory.getLogger(Main.class.getName()).info("probando HIBERNTE");
-    
+    Thread.sleep(5000);
+    LoggerFactory.getLogger(Main.class.getName()).info("probando HIBERNTE");
+    Thread.sleep(5000);
+
+    LoggerFactory.getLogger(Main.class.getName()).info("probando HIBERNTE");
     addEntityAlone();
     Ingredient i = getIngredient(1);
+    
     selectNamedQuery();
   }
 
