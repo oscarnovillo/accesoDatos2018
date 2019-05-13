@@ -23,6 +23,7 @@
     </RollingRandomAccessFile>
   </Appenders>
  
+ 
   <Loggers>
       <Logger name="quevedo.hibernatetest.Main" level="INFO" additivity="false">
           <AppenderRef ref="RollingRandomAccessFile"/>
