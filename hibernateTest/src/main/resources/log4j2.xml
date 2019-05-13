@@ -27,7 +27,7 @@
       <Logger name="quevedo.hibernatetest.Main" level="INFO" additivity="false">
           <AppenderRef ref="RollingRandomAccessFile"/>
       </Logger>
-    <Root level="DEBUG">
+    <Root level="INFO">
       <AppenderRef ref="Console"/>
     </Root>
   </Loggers>
