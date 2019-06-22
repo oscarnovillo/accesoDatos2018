@@ -10,17 +10,18 @@ smtpPort: 587
 mailPass: alumnodam2
 ##passDB: clasesdaw
 
-dbms: sqlserver
+#dbms: sqlserver
 
-driverDBmysql: com.mysql.cj.jdbc.Driver
-urlDBmysql: jdbc:mysql://db4free.net:3306/daw2_pruebas?serverTimeZone=UTC
-userDBmysqlsqlServer: oscarnovillo
-passDB: 1235b1a9
+#driverDBmysql: com.mysql.cj.jdbc.Driver
+#urlDB: jdbc:mysql://db4free.net:3306/daw2_pruebas?serverTimeZone=UTC
+#userDBmysqlsqlServer: oscarnovillo
+#passDB: 1235b1a9
 
-driverDBsqlserver: com.mysql.cj.jdbc.Driver
-urlDB: jdbc:mysql://db4free.net:3306/daw2_pruebas?serverTimeZone=UTC
-userDB: oscarnovillo
-passDB: 1235b1a9
+driverDB: com.mysql.cj.jdbc.Driver
+urlDB: jdbc:mysql://dam2.mysql.iesquevedo.es:3335/raidhub?serverTimeZone=UTC&allowPublicKeyRetrieval=true
+#jdbc:mysql://informatica.iesquevedo.es:3335/webstorelaura?serverTimeZone=UTC&allowPublicKeyRetrieval=true
+userDB: root    
+passDB: root
 #mailFrom: alumno1@iesquevedo.es
 #smtpServer: smtp.gmail.com
 #smtpPort: 587
