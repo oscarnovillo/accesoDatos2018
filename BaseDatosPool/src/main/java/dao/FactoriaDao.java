@@ -19,7 +19,7 @@ public class FactoriaDao {
   {
     AlumnosDao dao = null;
     if (tipoDAO == DAO_JDBC)
-      dao = new AlumnosDaoImplJDBC();
+      dao = null; //new AlumnosDaoImplJDBC();
     else if (tipoDAO == DAO_DBUTILS)
       dao = new AlumnosDaoImpl();
     return dao;

@@ -18,6 +18,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import org.jboss.weld.environment.se.Weld;
+import org.jboss.weld.environment.se.WeldContainer;
 import servicios.AlumnosServicios;
 import servicios.AsignaturasServicios;
 import servicios.NotasServicios;
@@ -83,7 +85,11 @@ public class FXMLPrincipalController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    alumnosServicios = new AlumnosServicios();
+      Weld w = new Weld();
+        WeldContainer c = w.initialize();
+    alumnosServicios = c.select(AlumnosServicios.class).get();
+    c.shutdown();
+    
     asignaturasServicios = new AsignaturasServicios();
     notasServicio = new NotasServicios();
 
@@ -124,9 +130,7 @@ public class FXMLPrincipalController implements Initializable {
   }
 
   public AlumnosServicios getAlumnosServicios() {
-    if (alumnosServicios == null) {
-      alumnosServicios = new AlumnosServicios();
-    }
+    
     return alumnosServicios;
   }
 

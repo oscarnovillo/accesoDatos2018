@@ -1,14 +1,21 @@
 ## YAML Template.
 ---
-#driverDB: org.hsqldb.jdbc.JDBCDriver
-#urlDB: jdbc:hsqldb:mem:instituto
-#userDB: estherrodriguez
-#passDB: 198788
+driverDB: org.hsqldb.jdbc.JDBCDriver
+urlDB: jdbc:hsqldb:mem:instituto
+userDB: estherrodriguez
+passDB: 198788
 mailFrom: alumno1@iesquevedo.es
 smtpServer: smtp.gmail.com
 smtpPort: 587
 mailPass: alumnodam2
 ##passDB: clasesdaw
+
+#driverDB: org.h2.Driver
+#urlDB: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
+#userDB: sa
+#passDB: sa
+
+
 
 #dbms: sqlserver
 
@@ -17,11 +24,11 @@ mailPass: alumnodam2
 #userDBmysqlsqlServer: oscarnovillo
 #passDB: 1235b1a9
 
-driverDB: com.mysql.cj.jdbc.Driver
-urlDB: jdbc:mysql://dam2.mysql.iesquevedo.es:3335/raidhub?serverTimeZone=UTC&allowPublicKeyRetrieval=true
-#jdbc:mysql://informatica.iesquevedo.es:3335/webstorelaura?serverTimeZone=UTC&allowPublicKeyRetrieval=true
-userDB: root    
-passDB: root
+#driverDB: com.mysql.cj.jdbc.Driver
+#urlDB: jdbc:mysql://dam2.mysql.iesquevedo.es:3335/raidhub?serverTimeZone=UTC&allowPublicKeyRetrieval=true
+##jdbc:mysql://informatica.iesquevedo.es:3335/webstorelaura?serverTimeZone=UTC&allowPublicKeyRetrieval=true
+#userDB: root    
+#passDB: root
 #mailFrom: alumno1@iesquevedo.es
 #smtpServer: smtp.gmail.com
 #smtpPort: 587

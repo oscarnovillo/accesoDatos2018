@@ -6,43 +6,45 @@
 package dao;
 
 import java.util.List;
+import javax.inject.Named;
 import model.Alumno;
 
 /**
  *
  * @author oscar
  */
-public class AlumnosDaoImplJDBC implements AlumnosDao{
+@Named("JDBC")
+public class AlumnosDaoImplJDBC {
 
-  @Override
-  public List<Alumno> getAllAlumnosDBUtils() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public List<Alumno> getAllAlumnosNotasDBUtils(int id) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public Alumno addUserDBUtils(Alumno alumno) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public int updateUserDBUtils(Alumno alumno) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public int deleteDBUtils(int id) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public int deleteUserTransaccionDBUtils(Alumno alumno) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
+//  @Override
+//  public List<Alumno> getAllAlumnosDBUtils() {
+//    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//  }
+//
+//  @Override
+//  public List<Alumno> getAllAlumnosNotasDBUtils(int id) {
+//    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//  }
+//
+//  @Override
+//  public Alumno addUserDBUtils(Alumno alumno) {
+//    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//  }
+//
+//  @Override
+//  public int updateUserDBUtils(Alumno alumno) {
+//    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//  }
+//
+//  @Override
+//  public int deleteDBUtils(int id) {
+//    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//  }
+//
+//  @Override
+//  public int deleteUserTransaccionDBUtils(Alumno alumno) {
+//    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//  }
   
   
 }

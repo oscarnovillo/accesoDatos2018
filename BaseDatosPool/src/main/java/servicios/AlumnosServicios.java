@@ -10,7 +10,11 @@ import dao.AlumnosDaoImpl;
 import dao.AlumnosDaoImplJDBC;
 import dao.FactoriaDao;
 import java.util.List;
+import javax.inject.Inject;
+import javax.inject.Named;
 import model.Alumno;
+import org.jboss.weld.environment.se.Weld;
+import org.jboss.weld.environment.se.WeldContainer;
 
 /**
  *
@@ -20,43 +24,46 @@ public class AlumnosServicios {
 
   private FactoriaDao factory;
   
-  public AlumnosServicios() {
-    factory = new FactoriaDao();
-  }
+ 
 
+    @Inject
+    private AlumnosDao dao;
+    
+  
     public List<Alumno> getAllAlumnos() {
-        AlumnosDao dao = factory.getAlumnosDAO
-        (FactoriaDao.DAO_JDBC);
+//        AlumnosDao dao = factory.getAlumnosDAO
+//        (FactoriaDao.DAO_JDBC);
+
         return dao.getAllAlumnosDBUtils();
     }
 
     public List<Alumno> getAllAlumnosNotas(int id) {
       
-        AlumnosDao dao = new AlumnosDaoImplJDBC();
+       //AlumnosDao dao = new AlumnosDaoImplJDBC();
 
         return dao.getAllAlumnosNotasDBUtils(id);
     }
 
     public Alumno insertAlumno(Alumno alumnoNuevo) {
-        AlumnosDao dao = new AlumnosDaoImpl();
+        //AlumnosDao dao = new AlumnosDaoImpl();
 
         return dao.addUserDBUtils(alumnoNuevo);
     }
 
     public int updateAlumno(Alumno alumnoNuevo) {
-        AlumnosDao dao = new AlumnosDaoImpl();
+        //AlumnosDao dao = new AlumnosDaoImpl();
 
         return dao.updateUserDBUtils(alumnoNuevo);
     }
 
     public int deleteAlumno(int id) {
-        AlumnosDao dao = new AlumnosDaoImpl();
+        //AlumnosDao dao = new AlumnosDaoImpl();
 
         return dao.deleteDBUtils(id);
     }
 
     public int deleteAlumnoPK(Alumno a) {
-        AlumnosDao dao = new AlumnosDaoImpl();
+        //AlumnosDao dao = new AlumnosDaoImpl();
 
         return dao.deleteUserTransaccionDBUtils(a);
     }
